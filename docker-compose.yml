@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+    skywalkingOapBrowser:
+        container_name: skywalking-oap-browser
+        hostname: skywalking-oap-browser
+        build:
+            context: .
+        image: skywalking-oap-browser:latest
+        logging:
+            options:
+                max-size: "100m"
+                max-file: "5"
+        restart: always
+        ports:
+            - "${LISTEN_PORT}:${LISTEN_PORT}"
+        #    volumes:
+        #      - ./nginx.conf:/etc/nginx/nginx.conf
+        #      - ./nginx.htpasswd:/etc/nginx/auth/nginx.htpasswd
+        env_file:
+            - ./.env
